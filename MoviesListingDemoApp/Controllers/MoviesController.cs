@@ -33,7 +33,8 @@ public class MoviesController : Controller
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Movie movie)
     {
-        return Ok();
+        await _mongoDBService.CreateAsync(movie);
+        return CreatedAtAction(nameof(Get), new { id = movie.Id }, movie);
     }
 
     /// <summary>
