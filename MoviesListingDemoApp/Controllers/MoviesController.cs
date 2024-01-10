@@ -41,12 +41,13 @@ public class MoviesController : Controller
     /// <summary>
     /// Update an existing document in the collection
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="title"></param>
     /// <param name="genre"></param>
     /// <returns></returns>
-    [HttpPut("{id}")]
-    public async Task<IActionResult> AddToGenres(string id, [FromBody] string genre)
+    [HttpPut("{title}")]
+    public async Task<IActionResult> AddToGenres(string title, [FromBody] string genre)
     {
+        await _mongoDBService.UpdateGenre(title, genre);
         return Ok();
     }
 
