@@ -57,9 +57,11 @@ public class MongoDBService
     /// <summary>
     /// Delete an existing document in the collection
     /// </summary>
-    /// <param name="id"></param>
-    public async Task DeleteAsync(string id)
+    /// <param name="title"></param>
+    public async Task DeleteAsync(string title)
     {
+        FilterDefinition<Movie> filter = Builders<Movie>.Filter.Eq("Title", title);
+        await _moviesCollection.DeleteOneAsync(filter);
         return;
     }
 

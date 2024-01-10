@@ -54,11 +54,12 @@ public class MoviesController : Controller
     /// <summary>
     /// Delete an existing document in the collection
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="title"></param>
     /// <returns></returns>
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
+    [HttpDelete("{title}")]
+    public async Task<IActionResult> Delete(string title)
     {
+        await _mongoDBService.DeleteAsync(title);
         return Ok();
     }
 
